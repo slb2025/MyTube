@@ -1,1 +1,53 @@
-<p>auth-page works!</p>
+<div class="auth-container">
+    <mat-card class="auth-card">
+        <mat-tab-group animationDuration="500ms">
+
+            <mat-tab label="Connexion">
+                <form [formGroup]="loginForm" (ngSubmit)="onSignIn()" class="auth-form">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nom d'utilisateur</mat-label>
+                        <input matInput formControlName="username" required>
+                        <mat-error *ngIf="loginForm.get('username')?.hasError('required')">Requis</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Mot de passe</mat-label>
+                        <input matInput formControlName="password" type="password" required>
+                        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Requis</mat-error>
+                    </mat-form-field>
+
+                    <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+                        Se connecter
+                    </button>
+                </form>
+            </mat-tab>
+
+            <mat-tab label="Inscription">
+                <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()" class="auth-form">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nom d'utilisateur</mat-label>
+                        <input matInput formControlName="username" required>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" type="email" required>
+                        <mat-error *ngIf="signUpForm.get('email')?.hasError('email')">Format email invalide</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Mot de passe</mat-label>
+                        <input matInput formControlName="password" type="password" required>
+                        <mat-error *ngIf="signUpForm.get('password')?.hasError('minlength')">Minimum 6
+                            caractères</mat-error>
+                    </mat-form-field>
+
+                    <button mat-raised-button color="warn" type="submit" [disabled]="signUpForm.invalid">
+                        S'inscrire
+                    </button>
+                </form>
+            </mat-tab>
+
+        </mat-tab-group>
+    </mat-card>
+</div>

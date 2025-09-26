@@ -1,0 +1,14 @@
+/* CSS pour rendre l'iframe responsive et remplir la page */
+.video-player-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.video-iframe {
+    width: 1000px;
+    /* Largeur maximale */
+    height: 562px;
+    /* Ratio 16:9 pour la vidéo */
+    max-width: 100%;
+}

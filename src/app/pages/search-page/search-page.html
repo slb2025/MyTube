@@ -1,1 +1,31 @@
-<p>search-page works!</p>
+<div class="search-page-container">
+
+    <mat-spinner *ngIf="isLoading" diameter="50"></mat-spinner>
+
+    <mat-form-field appearance="outline" class="search-input">
+        <mat-label>Rechercher des vidéos...</mat-label>
+        <input matInput [(ngModel)]="searchTerm" (keyup.enter)="onSearch()" placeholder="Batman, Demon Slayer...">
+        <button mat-button *ngIf="searchTerm" matSuffix mat-icon-button aria-label="Clear" (click)="searchTerm=''">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="onSearch()">Rechercher</button>
+
+    <div class="results-grid">
+        <mat-card *ngFor="let result of searchResults" class="video-card">
+            <img mat-card-image [src]="imageBaseUrl + result.poster_path" alt="{{ result.title }}"
+                (click)="playVideo(result.id)" class="clickable-image">
+
+            <mat-card-header>
+                <mat-card-title>{{ result.title | slice:0:30 }}...</mat-card-title>
+            </mat-card-header>
+
+            <mat-card-actions>
+                <button mat-raised-button color="accent" (click)="addToPlaylist(result)">
+                    Ajouter
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

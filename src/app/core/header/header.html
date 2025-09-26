@@ -1,1 +1,19 @@
-<p>header works!</p>
+<mat-toolbar color="warn" class="youtube-header">
+    <button mat-button routerLink="/search" class="logo-btn">
+        <span class="logo-text">MyTube</span>
+    </button>
+
+    <span class="spacer"></span>
+
+    <div *ngIf="!isAuthenticated()">
+        <button mat-button routerLink="/auth">
+            S'inscrire / Se connecter
+        </button>
+    </div>
+
+    <div *ngIf="isAuthenticated()">
+        <button mat-button (click)="onSignOut()">
+            Se déconnecter ({{ authService.getCurrentUsername() }})
+        </button>
+    </div>
+</mat-toolbar>

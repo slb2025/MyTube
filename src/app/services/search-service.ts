@@ -2,7 +2,7 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from '../../environments/environment'; // Importez la config
 
 // Interface pour le format de réponse (simplifiée)
@@ -18,6 +18,7 @@ export class SearchService {
 
   private readonly BASE_URL = environment.tmdbApiUrl;
   private readonly API_KEY = environment.tmdbApiKey;
+  public readonly IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'; // Rendu public pour le template
 
   constructor(private http: HttpClient) { }
 
@@ -50,5 +51,25 @@ export class SearchService {
       .set('language', 'fr-FR');
 
     return this.http.get<TmdbResponse>(endpoint, { params });
+  }
+
+  /**
+   * Récupère la clé YouTube du trailer principal d'un film.
+   */
+   getVideoKey(tmdbId: number): Observable<string | null> {
+    const endpoint = `${this.BASE_URL}/movie/${tmdbId}/videos`;
+
+    const params = new HttpParams()
+      .set('api_key', this.API_KEY);
+
+    return this.http.get<any>(endpoint, { params }).pipe(
+      // Trouver la première vidéo de type 'Trailer' ou 'Clip' provenant de YouTube
+      map(response => {
+        const trailer = response.results.find((video: any) => 
+          (video.site === 'YouTube' && (video.type === 'Trailer' || video.type === 'Clip'))
+        );
+        return trailer ? trailer.key : null;
+      })
+    );
   }
 }

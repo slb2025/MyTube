@@ -1,1 +1,13 @@
-<p>video-player works!</p>
+<div class="video-player-container">
+    <mat-card>
+        <mat-card-content>
+            <iframe *ngIf="videoUrl" [src]="videoUrl | safeUrl" class="video-iframe" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+            <div *ngIf="!videoUrl">
+                Vidéo non trouvée.
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

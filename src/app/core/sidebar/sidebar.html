@@ -1,1 +1,33 @@
-<p>sidebar works!</p>
+<mat-nav-list>
+    <h3 mat-subheader>Ma Playlist ({{ playlist.length }} vidéos)</h3>
+
+    <div *ngIf="playlist.length === 0" class="empty-list">
+        <span>Votre playlist est vide.</span>
+    </div>
+
+    <mat-list-item *ngFor="let video of playlist" [routerLink]="['/video', video.id]" class="playlist-item">
+        <img matListItemAvatar [src]="video.thumbnailUrl" alt="{{ video.title }}" class="thumbnail">
+        <div matListItemTitle>{{ video.title | slice:0:30 }}...</div>
+        <div matListItemLine>ID: {{ video.id }}</div>
+
+        <button mat-icon-button (click)="removeVideo(video.id); $event.stopPropagation()">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </mat-list-item>
+</mat-nav-list>
+
+<style>
+    /* Basic CSS pour la sidebar */
+    .thumbnail {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        margin-right: 8px;
+    }
+
+    .empty-list {
+        padding: 16px;
+        color: #999;
+        font-style: italic;
+    }
+</style>
