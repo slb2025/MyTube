@@ -11,8 +11,8 @@ interface User {
 })
 export class AuthService {
 
-  private USERS_STORAGE_KEY = 'myTubeUsers';
-  private SESSION_KEY = 'authenticatedUser';
+  public USERS_STORAGE_KEY = 'myTubeUsers';
+  public SESSION_KEY = 'authenticatedUser';
 
   private getUsers(): User[] {
     const users = localStorage.getItem(this.USERS_STORAGE_KEY);

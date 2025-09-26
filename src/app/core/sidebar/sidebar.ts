@@ -14,8 +14,8 @@ import { AuthService } from '../../services/auth-service';
   styleUrl: './sidebar.scss'
 })
 export class SidebarComponent {
-  private playlistService = inject(PlaylistService);
-  private authService = inject(AuthService);
+  public playlistService = inject(PlaylistService);
+  public authService = inject(AuthService);
 
   get playlist(): PlaylistVideo[] {
     const username = this.authService.getCurrentUsername();

@@ -1,9 +1,7 @@
-// src/app/services/search.service.ts
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { environment } from '../../environments/environment'; // Importez la config
+import { environment } from '../../environments/environment.development';
 
 // Interface pour le format de réponse (simplifiée)
 interface TmdbResponse {
@@ -20,7 +18,7 @@ export class SearchService {
   private readonly API_KEY = environment.tmdbApiKey;
   public readonly IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'; // Rendu public pour le template
 
-  constructor(private http: HttpClient) { }
+  constructor(public http: HttpClient) { }
 
   /**
    * Fonction de test : Récupère les films populaires pour vérifier l'API.

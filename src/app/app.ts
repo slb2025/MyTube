@@ -14,15 +14,18 @@ import { SidebarComponent } from './core/sidebar/sidebar';
     MatSidenavModule      
   ],
   template: `
-    <!-- Votre structure HTML complète de l'application -->
+     <!-- Le header se trouve au-dessus de tout -->
     <app-header></app-header>
 
+    <!-- Le conteneur MatSidenav pour la barre latérale et le contenu principal -->
     <mat-sidenav-container class="app-container">
 
+      <!-- La barre latérale avec le composant SidebarComponent -->
       <mat-sidenav mode="side" opened>
         <app-sidebar></app-sidebar>
       </mat-sidenav>
 
+      <!-- Le contenu principal de la page, géré par le routeur -->
       <mat-sidenav-content>
         <router-outlet></router-outlet>
       </mat-sidenav-content>

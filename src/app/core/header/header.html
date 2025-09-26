@@ -1,5 +1,6 @@
 <mat-toolbar color="warn" class="youtube-header">
-    <button mat-button routerLink="/search" class="logo-btn">
+    <button mat-icon-button routerLink="/search" class="logo-btn">
+        <mat-icon class="logo-icon">play_arrow</mat-icon>
         <span class="logo-text">MyTube</span>
     </button>
 
@@ -7,12 +8,14 @@
 
     <div *ngIf="!isAuthenticated()">
         <button mat-button routerLink="/auth">
-            S'inscrire / Se connecter
+            <mat-icon>login</mat-icon>
+            Se connecter
         </button>
     </div>
 
     <div *ngIf="isAuthenticated()">
         <button mat-button (click)="onSignOut()">
+            <mat-icon>logout</mat-icon>
             Se déconnecter ({{ authService.getCurrentUsername() }})
         </button>
     </div>

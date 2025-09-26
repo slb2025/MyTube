@@ -26,12 +26,12 @@ import { MatIcon } from "@angular/material/icon";
   styleUrl: './search-page.scss'
 })
 export class SearchPageComponent implements OnInit {
-  private searchService = inject(SearchService);
-  private playlistService = inject(PlaylistService);
-  private authService = inject(AuthService);
-  private router = inject(Router);
-  private snackBar = inject(MatSnackBar);
-  private cdr = inject(ChangeDetectorRef);
+  public searchService = inject(SearchService);
+  public playlistService = inject(PlaylistService);
+  public authService = inject(AuthService);
+  public router = inject(Router);
+  public snackBar = inject(MatSnackBar);
+  public cdr = inject(ChangeDetectorRef);
 
   searchTerm: string = '';
   searchResults: any[] = [];

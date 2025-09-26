@@ -12,7 +12,7 @@ import { SafeUrlPipe } from '../../pipes/safe-url-pipe';
   styleUrl: './video-player.scss'
 })
 export class VideoPlayerComponent implements OnInit {
-  private route = inject(ActivatedRoute);
+  public route = inject(ActivatedRoute);
   youtubeKey: string | null = null;
   videoUrl: string = '';
   

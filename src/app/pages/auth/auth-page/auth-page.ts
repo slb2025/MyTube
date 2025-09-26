@@ -20,9 +20,9 @@ import { AuthService } from '../../../services/auth-service';
   styleUrl: './auth-page.scss'
 })
 export class AuthPageComponent {
-  private fb = inject(FormBuilder);
-  private authService = inject(AuthService);
-  private router = inject(Router);
+  public fb = inject(FormBuilder);
+  public authService = inject(AuthService);
+  public router = inject(Router);
 
   // Formulaire de connexion
   loginForm: FormGroup = this.fb.group({
