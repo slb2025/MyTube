@@ -1,20 +1,36 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-// Assurez-vous d'utiliser 'search-page' (sans le .ts)
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { HeaderComponent } from './core/header/header';
+import { SidebarComponent } from './core/sidebar/sidebar';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  // 💡 Laissez RouterOutlet pour le futur routage, et ajoutez votre composant de test
-  imports: [RouterOutlet], 
-  // 💡 Pour le test, affichez uniquement le composant de recherche
+  imports: [
+    RouterOutlet,
+    HeaderComponent,      
+    SidebarComponent,     
+    MatSidenavModule      
+  ],
   template: `
-    <h1>{{ title() }}</h1>
-    <router-outlet></router-outlet> 
+    <!-- Votre structure HTML complète de l'application -->
+    <app-header></app-header>
+
+    <mat-sidenav-container class="app-container">
+
+      <mat-sidenav mode="side" opened>
+        <app-sidebar></app-sidebar>
+      </mat-sidenav>
+
+      <mat-sidenav-content>
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+
+    </mat-sidenav-container>
   `,
   styleUrl: './app.scss'
 })
 export class AppComponent { 
-  // Utilisez le signal pour le titre (bonne pratique)
   readonly title = signal('MyTube'); 
 }
