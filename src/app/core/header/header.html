@@ -6,17 +6,19 @@
 
     <span class="spacer"></span>
 
-    <div *ngIf="!isAuthenticated()">
+    <!-- Affiche "Se connecter" si aucun utilisateur n'est connecté -->
+    <div *ngIf="!authService.currentUser()">
         <button mat-button routerLink="/auth">
             <mat-icon>login</mat-icon>
             Se connecter
         </button>
     </div>
 
-    <div *ngIf="isAuthenticated()">
+    <!-- Affiche "Se déconnecter" et le nom de l'utilisateur s'il est connecté -->
+    <div *ngIf="authService.currentUser()">
         <button mat-button (click)="onSignOut()">
             <mat-icon>logout</mat-icon>
-            Se déconnecter ({{ authService.getCurrentUsername() }})
+            Se déconnecter ({{ authService.currentUser() }})
         </button>
     </div>
 </mat-toolbar>

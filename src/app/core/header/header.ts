@@ -16,10 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class HeaderComponent {
   // Injection des dépendances modernes
   public authService = inject(AuthService);
-  private router = inject(Router);
-
-  // Exposer la méthode pour le template
-  isAuthenticated = this.authService.isAuthenticated.bind(this.authService);
+  public router = inject(Router);
 
   onSignOut(): void {
     this.authService.signOut();

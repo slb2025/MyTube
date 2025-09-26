@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 import { SearchService } from '../../services/search-service';
 import { PlaylistService, PlaylistVideo } from '../../services/playlist-service';
 import { AuthService } from '../../services/auth-service';
-import { tap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatIcon } from "@angular/material/icon";
 

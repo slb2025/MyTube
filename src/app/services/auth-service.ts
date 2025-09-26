@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
 // Interface pour définir la structure des informations utilisateur dans localStorage
 interface User {
@@ -13,6 +13,14 @@ export class AuthService {
 
   public USERS_STORAGE_KEY = 'myTubeUsers';
   public SESSION_KEY = 'authenticatedUser';
+
+  // Signal pour suivre l'utilisateur actuellement connecté
+  public currentUser = signal<string | null>(null);
+
+  constructor() {
+    // Mettre à jour le signal au démarrage de l'application
+    this.currentUser.set(sessionStorage.getItem(this.SESSION_KEY));
+  }
 
   private getUsers(): User[] {
     const users = localStorage.getItem(this.USERS_STORAGE_KEY);
@@ -46,6 +54,8 @@ export class AuthService {
     if (user) {
       // Stocker le nom d'utilisateur dans sessionStorage pour marquer la session
       sessionStorage.setItem(this.SESSION_KEY, username);
+      // Mettre à jour le signal après une connexion réussie
+      this.currentUser.set(username);
       return true;
     }
     return false;
@@ -53,6 +63,8 @@ export class AuthService {
 
   signOut(): void {
     sessionStorage.removeItem(this.SESSION_KEY);
+    // Mettre à jour le signal après une déconnexion
+    this.currentUser.set(null);
   }
   
   /** Retourne le nom d'utilisateur connecté ou null. */
