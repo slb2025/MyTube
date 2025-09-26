@@ -1,59 +1,75 @@
-# MyTube
+**MyTube**
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.3.
+**Vue d'ensemble du projet**
+MyTube est une application web de streaming vidéo construite avec Angular. Elle permet aux utilisateurs de rechercher des films via l'API The Movie Database (TMDB), de visionner des bandes-annonces sur YouTube et de gérer leurs propres playlists.
 
-## Development server
+**Fonctionnalités**
+- *Recherche de films* : Recherchez des films ou explorez une liste de films populaires.
+- *Visionnage de vidéos* : Regardez les bandes-annonces des films directement sur l'application.
+- *Gestion de playlists* : Ajoutez ou retirez des films dans une playlist personnalisée.
+- *Authentification locale* : Connectez-vous ou inscrivez-vous avec un système d'authentification simple et local.
+- *Design responsive* : L'interface utilisateur est optimisée pour les appareils mobiles, les tablettes et les ordinateurs de bureau.
 
-To start a local development server, run:
+**Technologies Utilisées**
+- *Frontend* : Angular
+- *UI / Composants* : Angular Material
+- *Requêtes HTTP* : HttpClient
+- *Gestion d'état* : localStorage (pour l'authentification et les playlists)
+- *API* : The Movie Database (TMDB) API
+- *Système de construction* : Angular CLI
 
-```bash
-ng serve
-```
+**Instructions de Démarrage**
+Pour lancer une copie locale de l'application, suivez les étapes suivantes.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+**Prérequis**
+Assurez-vous que Node.js et Angular CLI sont installés sur votre machine.
 
-## Code scaffolding
+**Vérifiez vos versions**
+node --version
+npm --version
+ng version
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+**Installation**
+Clonez le dépôt :
+git clone https://github.com/slb2025/MyTube.git
+    cd mytube
 
-```bash
-ng generate component component-name
-```
+Installez les dépendances du projet :
+    npm install
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Configurez votre API Key TMDB. Créez un fichier src/environments/environment.ts et ajoutez-y votre clé :
+    export const environment = {
+    production: false,
+    tmdbApiUrl: '[https://api.themoviedb.org/3](https://api.themoviedb.org/3)',
+    >>>tmdbApiKey: 'VOTRE_CLÉ_API_ICI'<<<
+    };
 
-```bash
-ng generate --help
-```
+**Lancement du serveur de développement**
+Pour démarrer l'application :
+    ng serve
 
-## Building
+L'application sera accessible dans votre navigateur à l'adresse http://localhost:4200/.
 
-To build the project run:
+**Structure du projet**
+src/
+├── app/
+│   ├── app.ts
+│   ├── core/
+│   │   ├── header/
+│   │   └── sidebar/
+│   ├── pages/
+│   │   ├── auth-page/
+│   │   ├── search-page/
+│   │   └── video-page/
+│   └── services/
+│       ├── auth-service.ts
+│       ├── playlist-service.ts
+│       └── search-service.ts
+├── assets/
+├── environments/
+│   ├── environment.ts
+│   └── environment.prod.ts
+└── styles.scss
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**Licence**
+Accès libre de droits, c'est cadeau :D
